@@ -74,6 +74,8 @@ func sumConcurrentlyDataRace(numbers []int) int {
 			for _, num := range numbersSlice {
 				intermediateSum += int64(num)
 			}
+			// Data race. `sum` is being written to by more than one goroutine in a non-atomic,
+			// non-mutexed way.
 			sum += intermediateSum
 			wg.Done()
 		}()
