@@ -15,3 +15,10 @@ func BenchmarkSumConcurrently(b *testing.B) {
 		sumConcurrently(numbers)
 	}
 }
+
+func BenchmarkSumConcurrentlyDataRace(b *testing.B) {
+	numbers := buildArray()
+	for n := 0; n < b.N; n++ {
+		sumConcurrentlyDataRace(numbers)
+	}
+}
